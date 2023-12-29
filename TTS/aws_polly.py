@@ -3,7 +3,7 @@ from boto3 import Session
 from botocore.exceptions import BotoCoreError, ClientError, ProfileNotFound
 import sys
 from utils import settings
-import random
+import secrets
 
 voices = [
     "Brian",
@@ -73,4 +73,4 @@ class AWSPolly:
             sys.exit(-1)
 
     def randomvoice(self):
-        return random.choice(self.voices)
+        return secrets.SystemRandom().choice(self.voices)

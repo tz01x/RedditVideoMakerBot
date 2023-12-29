@@ -1,8 +1,8 @@
 import base64
 from utils import settings
-import random
 import requests
 from requests.adapters import HTTPAdapter, Retry
+import secrets
 
 # from profanity_filter import ProfanityFilter
 # pf = ProfanityFilter()
@@ -77,7 +77,7 @@ class TikTok:  # TikTok Text-to-Speech Wrapper
             if random_voice
             else (
                 settings.config["settings"]["tts"]["tiktok_voice"]
-                or random.choice(self.voices["human"])
+                or secrets.SystemRandom().choice(self.voices["human"])
             )
         )
         try:
@@ -98,4 +98,4 @@ class TikTok:  # TikTok Text-to-Speech Wrapper
             out.write(b64d)
 
     def randomvoice(self):
-        return random.choice(self.voices["human"])
+        return secrets.SystemRandom().choice(self.voices["human"])

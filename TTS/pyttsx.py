@@ -1,6 +1,6 @@
-import random
 import pyttsx3
 from utils import settings
+import secrets
 
 
 class pyttsx:
@@ -37,4 +37,4 @@ class pyttsx:
         engine.runAndWait()
 
     def randomvoice(self):
-        return random.choice(self.voices)
+        return secrets.SystemRandom().choice(self.voices)
