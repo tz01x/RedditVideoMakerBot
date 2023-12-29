@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-import random
 from utils import settings
 from gtts import gTTS
+import secrets
 
 max_chars = 0
 
@@ -20,4 +20,4 @@ class GTTS:
         tts.save(filepath)
 
     def randomvoice(self):
-        return random.choice(self.voices)
+        return secrets.SystemRandom().choice(self.voices)

@@ -1,6 +1,4 @@
 from pathlib import Path
-import random
-from random import randrange
 import re
 from typing import Any, Tuple
 
@@ -13,6 +11,7 @@ from pytube.cli import on_progress
 from utils import settings
 from utils.CONSTANTS import background_options
 from utils.console import print_step, print_substep
+import secrets
 
 
 def get_start_and_end_times(video_length: int, length_of_clip: int) -> Tuple[int, int]:
@@ -25,7 +24,7 @@ def get_start_and_end_times(video_length: int, length_of_clip: int) -> Tuple[int
     Returns:
         tuple[int,int]: Start and end time of the randomized interval
     """
-    random_time = randrange(180, int(length_of_clip) - int(video_length))
+    random_time = secrets.SystemRandom().randrange(180, int(length_of_clip) - int(video_length))
     return random_time, random_time + video_length
 
 
@@ -40,7 +39,7 @@ def get_background_config():
     # Handle default / not supported background using default option.
     # Default : pick random from supported background.
     if not choice or choice not in background_options:
-        choice = random.choice(list(background_options.keys()))
+        choice = secrets.SystemRandom().choice(list(background_options.keys()))
 
     return background_options[choice]
 
